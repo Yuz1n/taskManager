@@ -1,0 +1,48 @@
+<form (ngSubmit)="addTask()" #taskForm="ngForm" class="task-form" novalidate>
+  <div class="form-group">
+    <label for="title">Title:</label>
+    <input 
+      type="text" 
+      id="title" 
+      [(ngModel)]="title" 
+      name="title" 
+      placeholder="Enter task title" 
+      required 
+      aria-label="Task title" 
+    />
+  </div>
+  
+  <div class="form-group">
+    <label for="description">Description:</label>
+    <input 
+      type="text" 
+      id="description" 
+      [(ngModel)]="description" 
+      name="description" 
+      placeholder="Enter task description" 
+      required 
+      aria-label="Task description" 
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="dueDate">Due Date:</label>
+    <input 
+      type="date" 
+      id="dueDate" 
+      [(ngModel)]="dueDate" 
+      name="dueDate" 
+      required 
+      aria-label="Task due date" 
+    />
+  </div>
+
+  <button 
+    type="submit" 
+    class="btn btn-primary" 
+    [disabled]="taskForm.invalid || loading"
+  >
+    <span *ngIf="!loading">Add Task</span>
+    <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+  </button>
+</form>

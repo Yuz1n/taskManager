@@ -1,0 +1,17 @@
+<div class="task-item" [ngClass]="{'completed': task.completed}">
+    <div class="task-header">
+      <h3>{{ task.title }}</h3>
+      <div class="task-status">
+        <span [class.completed]="task.completed">
+          {{ task.completed ? 'Completed' : 'Pending' }}
+        </span>
+      </div>
+    </div>
+    <p>{{ task.description }}</p>
+    <small>Due: {{ task.dueDate | date }}</small>
+    <div class="task-actions">
+      <button class="btn btn-edit">Edit</button>
+      <button class="btn btn-delete">Delete</button>
+    </div>
+  </div>
+  

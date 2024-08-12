@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+  }
+  
+  .form-container {
+    flex: 1;
+    max-width: 45%;
+  }
+  
+  .list-container {
+    flex: 2;
+    max-width: 50%;
+    margin-left: 20px;
+  }
+  

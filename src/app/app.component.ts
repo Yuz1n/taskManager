@@ -1,13 +1,36 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { TaskService } from './services/task.service';
+import { TaskFormComponent } from './components/task-form/task-form.component';
+import { TaskListComponent } from './components/task-list/task-list.component';
+import { Task } from './models/task.model';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss'],
+  imports: [
+    TaskFormComponent,
+    TaskListComponent,
+  ],
+  standalone: true,
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'project-management';
+  tasks: Task[] = [];
+
+  constructor(private taskService: TaskService) {}
+
+  ngOnInit(): void {
+    this.refreshTasks();
+  }
+
+  refreshTasks(): void {
+    this.taskService.getTasks().subscribe((tasks) => {
+      this.tasks = tasks;
+    });
+  }
+
+  onTaskAdded(task: Task): void {
+    this.tasks.push(task);  // Adiciona a nova tarefa à lista existente
+  }
 }
